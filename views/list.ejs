@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Today is <%= theDay %></h1>
+
+    <!-- The List -->
+    <ul class="todo-list">
+      <% newitems.forEach(item => { %>
+        <li>
+          <form action="/update/<%= item._id %>" method="POST" style="display:inline;">
+            <input type="text" name="newName" value="<%= item.name %>" required>
+            <button type="submit" class="up">Update</button>
+          </form>
+          <form action="/delete/<%= item._id %>" method="POST" style="display:inline;">
+            <button type="submit" class="del">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+    
+    <!-- The form -->
+    <form action="/" method="post" class="add-item-form">
+      <input type="text" name="adding" placeholder="Add a new item" required>
+      <button type="submit">+</button>
+    </form>
+  </div>
+</body>
+</html>
